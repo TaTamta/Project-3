@@ -1,9 +1,10 @@
 const snakeSpeed = 2;
 const snake = [
     {x:8, y:8},
-    {x:9, y:8},
-    {x:10, y:8}
+    // {x:9, y:8},
+    // {x:10, y:8}
 ];
+const playground = document.getElementById('board')
 
 
 
@@ -28,4 +29,4 @@ function move(){
     snake[0].y += 1;
 };
 
-move()
+
