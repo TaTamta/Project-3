@@ -16,8 +16,11 @@ function mainGame(){
     move();
     controlSnake();
     checkFood();
-    if(isDead){
-        clearInterval
+    if(isDead(snake)){
+        clearInterval;
+        score = 0;
+        alert('L O S E R')
+        snake = [{x:8, y:8}];
     }
 }
 
@@ -127,31 +130,4 @@ function controlSnake(){
     }
     })
 }
-
-// let interval = 0;
-// let intervalTime = 0;
-
-// function start(){
-//     intervalTime =1000
-//     interval = setInterval(mainGame, intervalTime)
-// }
-
-// function mainGame(){
-//     if(isDead){
-//         return clearInterval(interval)
-//     }
-//     showFood();
-//     showSnake();
-//     move();
-//     checkFood();
-//     controlSnake()
-
-//     document.addEventListener('keyup', controlSnake);
-//     startbutton.addEventListener('click', start)
-// }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     start();
-//     mainGame();
-// })
 
