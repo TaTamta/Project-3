@@ -9,6 +9,22 @@ let height = 15
 let startbutton = document.querySelector('startGame')
 
 
+showSnake();
+showFood();
+
+function mainGame(){
+    move();
+    controlSnake();
+    checkFood();
+    if(isDead){
+        clearInterval
+    }
+}
+
+setInterval(mainGame, 1000)
+
+
+
 
 function showSnake() {
     snake.forEach((seg) => {
@@ -84,7 +100,7 @@ function checkFood(){
 }
 
 
-controlSnake()
+
 let lastInputDirection = { x: 0, y: 0 }
 
 function controlSnake(){
@@ -112,29 +128,30 @@ function controlSnake(){
     })
 }
 
-let interval = 0;
-let intervalTime = 0;
+// let interval = 0;
+// let intervalTime = 0;
 
-function start(){
-    intervalTime =1000
-    interval = setInterval(mainGame, intervalTime)
-}
+// function start(){
+//     intervalTime =1000
+//     interval = setInterval(mainGame, intervalTime)
+// }
 
-function mainGame(){
-    if(isDead){
-        return clearInterval(interval)
-    }
-    showFood();
-    showSnake();
-    move();
-    checkFood();
-    controlSnake()
+// function mainGame(){
+//     if(isDead){
+//         return clearInterval(interval)
+//     }
+//     showFood();
+//     showSnake();
+//     move();
+//     checkFood();
+//     controlSnake()
 
-    document.addEventListener('keyup', controlSnake);
-    startbutton.addEventListener('click', start)
-}
+//     document.addEventListener('keyup', controlSnake);
+//     startbutton.addEventListener('click', start)
+// }
 
-document.addEventListener('DOMContentLoaded', () => {
-    start();
-    mainGame();
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     start();
+//     mainGame();
+// })
+
