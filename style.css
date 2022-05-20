@@ -48,9 +48,9 @@ button {
     border: black solid 2px;
     display: grid;
     width: 90vmin;
-    height: 90vmin;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(15, 1fr);
+    height: 92vmin;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(18, 1fr);
 }
 
 .head {

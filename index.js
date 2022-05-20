@@ -1,17 +1,15 @@
-let lastPaintTime = 0;
-const speed = 5
 let direction = {x:0, y:0};
 let score = 0;
 let snake = [{x:8, y:8}];
 let food = {x:5, y:4}
 const playground = document.getElementById('board')
 let width = 15;
-let height = 15
+let height = 15;
 let startbutton = document.querySelector('startGame')
 let lastInputDirection = { x: 0, y: 0 };
+import { speed } from './config.js'
 
-
-setInterval(mainGame, 300);
+setInterval(mainGame, speed);
 
 //snake Death versions 
 function isDead(snk){
