@@ -1,5 +1,5 @@
 const playground = document.getElementById('board');
-export let snake = [{x:8, y:8}];
+import {snake} from './index.js'
 
 export function showSnake(){
     snake.forEach((seg, index) => {

@@ -1,15 +1,15 @@
 let startbutton = document.getElementById('startGame')
 const playground = document.getElementById('board');
-let width = 18;
-let heigh = 18; 
-let direction = {x:0, y:0};
+let direction = { x: 0, y: 0 };
+let inputDirection = { x: 0, y: 0 };
 let score = 0;
 const scoreValue = document.querySelector('span');
 scoreValue.innerHTML = score;
-let food = {x:5, y:4};
-let inputDirection = { x: 0, y: 0 };
-import {speed} from './config.js';
-import {showSnake, snake} from './snake.js';
+export let snake = [{x:8, y:8}];
+let food = { x: 5, y: 4 };
+import { speed, width } from './config.js';
+import { showSnake } from './snake.js';
+
 
 
 
@@ -18,18 +18,24 @@ startbutton.addEventListener('click', () => {
 })
 
 
-function start(){
+function start() {
     setInterval(gamePlay, speed);
 }
 
 
 function gamePlay() {
-    if (isDead(snake)){
-        clearInterval;
+    if (isDead(snake)) {
         scoreValue.textContent = score;
-        score = 0;
+        score = 0
+        direction = { x: 0, y: 0 }
+        snake = [{ x: 8, y: 8 }];
+
     }
-    else gameEngine()
+    if (isDead !== true) {
+        scoreValue.textContent = score;
+        gameEngine()
+        console.log('hey')
+    }
 }
 
 
@@ -62,34 +68,34 @@ function isDead(snakeEl) {
 }
 
 //displays food on playground 
-function showFood(){
+function showFood() {
     let foodElement = document.createElement('div');
     foodElement.style.gridRowStart = food.y;
     foodElement.style.gridColumnStart = food.x;
     foodElement.classList.add('food')
-    board.appendChild(foodElement);       
+    board.appendChild(foodElement);
 }
 
 
 /*Seats food, grows and rendom food is displayed(not on snake's body) 
 score increases */
 
-function eatFood(){
+function eatFood() {
     if (snake[0].y === food.y && snake[0].x === food.x) {
         snake.unshift({ x: snake[0].x + direction.x, y: snake[0].y + direction.y });
         score++
         scoreValue.textContent = score;
         randomFood();
     }
-    for (let i=0; i< snake.length; i++){
-        if (snake[i].y === food.y && snake[i].x === food.x){
+    for (let i = 0; i < snake.length; i++) {
+        if (snake[i].y === food.y && snake[i].x === food.x) {
             randomFood();
         }
     }
 }
 
 //food is created randomly
-function randomFood(){
+function randomFood() {
     food = {
         x: Math.floor(Math.random() * width) + 1,
         y: Math.floor(Math.random() * width) + 1
@@ -97,11 +103,11 @@ function randomFood(){
 }
 
 //Snake moves
-function move(){
-    playground.innerHTML='';
+function move() {
+    playground.innerHTML = '';
     const direction = getInputDirection()
-    for (let i = snake.length - 2; i>=0; i--) { 
-        snake[i+1] = {...snake[i]};
+    for (let i = snake.length - 2; i >= 0; i--) {
+        snake[i + 1] = { ...snake[i] };
     }
     snake[0].x += direction.x;
     snake[0].y += direction.y;
@@ -112,26 +118,26 @@ function move(){
 window.addEventListener('keydown', e => {
     switch (e.key) {
         case 'ArrowUp':
-        if (inputDirection.y !== 0) break
-        direction = { x: 0, y: -1 }
-        console.log("ArrowUp")
-        break
+            if (inputDirection.y !== 0) break
+            direction = { x: 0, y: -1 }
+            console.log("ArrowUp")
+            break
         case 'ArrowDown':
-        if (inputDirection.y !== 0) break
-        direction = { x: 0, y: 1 }
-        break
+            if (inputDirection.y !== 0) break
+            direction = { x: 0, y: 1 }
+            break
         case 'ArrowLeft':
-        if (inputDirection.x !== 0) break
-        direction = { x: -1, y: 0 }
-        break
+            if (inputDirection.x !== 0) break
+            direction = { x: -1, y: 0 }
+            break
         case 'ArrowRight':
-        if (inputDirection.x !== 0) break
-        direction = { x: 1, y: 0 }
-        break
+            if (inputDirection.x !== 0) break
+            direction = { x: 1, y: 0 }
+            break
     }
 });
 
-function getInputDirection(){
+function getInputDirection() {
     inputDirection = direction;
     return direction
 }
