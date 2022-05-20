@@ -16,12 +16,12 @@ function mainGame(){
     move();
     controlSnake();
     checkFood();
-    if(isDead(snake)){
-        clearInterval;
-        score = 0;
-        alert('L O S E R')
-        snake = [{x:8, y:8}];
-    }
+    // if(isDead(snake)){
+    //     clearInterval;
+    //     score = 0;
+    //     alert('L O S E R')
+    //     snake = [{x:8, y:8}];
+    // }
 }
 
 setInterval(mainGame, 1000)
@@ -64,7 +64,7 @@ function showFood(){
 
 function move(){
     for (let i = snake.length - 2; i >= 0; i-- ){
-        snake[i + 1] = snake[i]
+        snake[i + 1] = {...snake[i]}
     }
     snake[0].x += 0;
     snake[0].y += 1;
@@ -95,9 +95,9 @@ function checkFood(){
             y: Math.floor(Math.random() * width) + 1};
     }
 
-    for (let i = snake.length - 2; i>=0; i--) { 
-        snake[i+1] = {...snake[i]};
-    }
+    // for (let i = snake.length - 2; i>=0; i--) { 
+    //     snake[i+1] = {...snake[i]};
+    // }
     snake[0].x += direction.x;
     snake[0].y += direction.y;
 }
