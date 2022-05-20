@@ -9,33 +9,38 @@ let inputDirection = { x: 0, y: 0 };
 import {speed} from './config.js';
 import {showSnake, snake} from './snake.js';
 
-setInterval(mainGame, speed);
+setInterval(gamePlay, speed);
 
-function mainGame(){
-    if (isDead(snake)){
-        clearInterval
-    }
-  
+function gameEngine() {
     move()
 
-    eatFood()   
+    eatFood()
 
     showSnake()
-    
-    showFood()  
+
+    showFood()
 }
 
-//snake Death versions 
-function isDead(snk){
-    for (let i = 0; i < snake.length; i++) {
-        if (snk[i].x === snk[0].x && snk[i].y === snk[0].y ){
+function gamePlay() {
+    if (isDead(snake)){
+        clearInterval;
+    }
+    else gameEngine()
+}
+
+
+// snake Death versions 
+function isDead(snakeEl) {
+    for (let i = 1; i < snake.length; i++) {
+        if (snakeEl[i].x === snakeEl[0].x && snakeEl[i].y === snakeEl[0].y) {
             return true;
         }
     }
-
-    if(snk[0].x >=15 || snk[0].x <=0 || snk[0].y >= 15 || snk[0].y <=0  ){
+    // If you bump into the wall
+    if (snakeEl[0].x >= 18 || snakeEl[0].x <= 0 || snakeEl[0].y >= 18 || snakeEl[0].y <= 0) {
         return true;
     }
+
     return false;
 }
 
