@@ -60,7 +60,7 @@ function isDead(snakeEl) {
         }
     }
     // If you bump into the wall
-    if (snakeEl[0].x >= 18 || snakeEl[0].x <= 0 || snakeEl[0].y >= 18 || snakeEl[0].y <= 0) {
+    if (snakeEl[0].x > 18 || snakeEl[0].x <= 0 || snakeEl[0].y > 18 || snakeEl[0].y <= 0) {
         return true;
     }
 
