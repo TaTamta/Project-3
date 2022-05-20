@@ -1,1 +1,1 @@
-export const speed = 300;
+export const speed = 200;
