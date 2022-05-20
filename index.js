@@ -4,12 +4,30 @@ const playground = document.getElementById('board')
 let width = 15;
 let height = 15;
 let food = {x:5, y:4};
-let startbutton = document.querySelector('startGame')
+let startbutton = document.getElementById('startGame')
 let inputDirection = { x: 0, y: 0 };
 import {speed} from './config.js';
 import {showSnake, snake} from './snake.js';
 
-setInterval(gamePlay, speed);
+
+
+startbutton.addEventListener('click', () => {
+    start();
+})
+
+
+function start(){
+    setInterval(gamePlay, speed);
+}
+
+
+function gamePlay() {
+    if (isDead(snake)){
+        clearInterval;
+    }
+    else gameEngine()
+}
+
 
 function gameEngine() {
     move()
@@ -21,12 +39,7 @@ function gameEngine() {
     showFood()
 }
 
-function gamePlay() {
-    if (isDead(snake)){
-        clearInterval;
-    }
-    else gameEngine()
-}
+
 
 
 // snake Death versions 
