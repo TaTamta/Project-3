@@ -11,6 +11,20 @@ import {showSnake, snake} from './snake.js';
 
 setInterval(mainGame, speed);
 
+function mainGame(){
+    if (isDead(snake)){
+        clearInterval
+    }
+  
+    move()
+
+    eatFood()   
+
+    showSnake()
+    
+    showFood()  
+}
+
 //snake Death versions 
 function isDead(snk){
     for (let i = 0; i < snake.length; i++) {
@@ -25,21 +39,7 @@ function isDead(snk){
     return false;
 }
 
-function mainGame(){
-    if (isDead(snake)){
-        clearInterval
-    }
-  
-    move()
-
-    eatFood()   
-
-    showSnake()
-    
-    showFood()
-    
-}
-    
+//displays food on playground 
 function showFood(){
     let foodElement = document.createElement('div');
     foodElement.style.gridRowStart = food.y;
@@ -49,7 +49,7 @@ function showFood(){
 }
 
 
-
+//Snake eats food, grows and rendom food is displayed
 function eatFood(){
     if(snake[0].y === food.y && snake[0].x === food.x){
         snake.unshift({x: snake[0].x + direction.x, y: snake[0].y + direction.y});
@@ -58,8 +58,10 @@ function eatFood(){
     }
 }
 
+//Snake moves
 function move(){
     playground.innerHTML='';
+    const direction = getInputDirection()
     for (let i = snake.length - 2; i>=0; i--) { 
         snake[i+1] = {...snake[i]};
     }
@@ -67,6 +69,8 @@ function move(){
     snake[0].y += direction.y;
 }
 
+
+//snake controllers
 window.addEventListener('keydown', e => {
     switch (e.key) {
         case 'ArrowUp':
@@ -87,4 +91,9 @@ window.addEventListener('keydown', e => {
         direction = { x: 1, y: 0 }
         break
     }
-    });
+});
+
+function getInputDirection(){
+    lastInputDirection = direction;
+    return direction
+}
