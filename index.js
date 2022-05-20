@@ -1,10 +1,12 @@
+let startbutton = document.getElementById('startGame')
+const playground = document.getElementById('board');
+let width = 18;
+let heigh = 18; 
 let direction = {x:0, y:0};
 let score = 0;
-const playground = document.getElementById('board')
-let width = 15;
-let height = 15;
+const scoreValue = document.querySelector('span');
+scoreValue.innerHTML = score;
 let food = {x:5, y:4};
-let startbutton = document.getElementById('startGame')
 let inputDirection = { x: 0, y: 0 };
 import {speed} from './config.js';
 import {showSnake, snake} from './snake.js';
@@ -24,6 +26,8 @@ function start(){
 function gamePlay() {
     if (isDead(snake)){
         clearInterval;
+        scoreValue.textContent = score;
+        score = 0;
     }
     else gameEngine()
 }
@@ -67,13 +71,29 @@ function showFood(){
 }
 
 
-//Snake eats food, grows and rendom food is displayed
+/*Seats food, grows and rendom food is displayed(not on snake's body) 
+score increases */
+
 function eatFood(){
-    if(snake[0].y === food.y && snake[0].x === food.x){
-        snake.unshift({x: snake[0].x + direction.x, y: snake[0].y + direction.y});
-        food = {x: Math.floor(Math.random() * width) + 1,
-            y: Math.floor(Math.random() * width) + 1};
+    if (snake[0].y === food.y && snake[0].x === food.x) {
+        snake.unshift({ x: snake[0].x + direction.x, y: snake[0].y + direction.y });
+        score++
+        scoreValue.textContent = score;
+        randomFood();
     }
+    for (let i=0; i< snake.length; i++){
+        if (snake[i].y === food.y && snake[i].x === food.x){
+            randomFood();
+        }
+    }
+}
+
+//food is created randomly
+function randomFood(){
+    food = {
+        x: Math.floor(Math.random() * width) + 1,
+        y: Math.floor(Math.random() * width) + 1
+    };
 }
 
 //Snake moves
