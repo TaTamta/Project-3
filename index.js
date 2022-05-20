@@ -5,7 +5,7 @@ let width = 15;
 let height = 15;
 let food = {x:5, y:4};
 let startbutton = document.querySelector('startGame')
-let lastInputDirection = { x: 0, y: 0 };
+let inputDirection = { x: 0, y: 0 };
 import {speed} from './config.js';
 import {showSnake, snake} from './snake.js';
 
@@ -74,26 +74,26 @@ function move(){
 window.addEventListener('keydown', e => {
     switch (e.key) {
         case 'ArrowUp':
-        if (lastInputDirection.y !== 0) break
+        if (inputDirection.y !== 0) break
         direction = { x: 0, y: -1 }
         console.log("ArrowUp")
         break
         case 'ArrowDown':
-        if (lastInputDirection.y !== 0) break
+        if (inputDirection.y !== 0) break
         direction = { x: 0, y: 1 }
         break
         case 'ArrowLeft':
-        if (lastInputDirection.x !== 0) break
+        if (inputDirection.x !== 0) break
         direction = { x: -1, y: 0 }
         break
         case 'ArrowRight':
-        if (lastInputDirection.x !== 0) break
+        if (inputDirection.x !== 0) break
         direction = { x: 1, y: 0 }
         break
     }
 });
 
 function getInputDirection(){
-    lastInputDirection = direction;
+    inputDirection = direction;
     return direction
 }
