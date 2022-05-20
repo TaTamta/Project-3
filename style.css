@@ -11,16 +11,22 @@ body {
 }
 
 
-.score {
+.container {
     display: flex;
     justify-content: center;
-    margin: 10px;
-    font-size: x-large;
+    align-items: center;
+}
+.score {
+    font-size: 40px;
+    position: absolute;
+    top:60px;
+    right:200px
 }
 
 .startGame {
-    display: block;
-    margin: auto;
+   position: absolute;
+   top: 10px;
+   right: 200px;
 }
 
 button {
@@ -39,16 +45,22 @@ button {
 .board {
     margin-top: 10px;
     background-color: antiquewhite;
+    border: black solid 2px;
     display: grid;
-    width: 100vmin;
-    height: 100vmin;
+    width: 90vmin;
+    height: 90vmin;
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(15, 1fr);
 }
 
-.head, .snakeBody {
+.head {
     background-color: darkred;
     border: solid black 0.25vmin;
+}
+
+.snakeBody {
+    border: solid black 0.25vmin;
+    background-color: rgb(223, 143, 129);
 }
 
 .food {
