@@ -18,8 +18,12 @@ startbutton.addEventListener('click', () => {
 })
 
 
+let gameLoop = null;
+
 function start() {
-    setInterval(gamePlay, speed);
+    // Ignore repeat clicks — each click used to stack another interval and speed the game up
+    if (gameLoop !== null) return;
+    gameLoop = setInterval(gamePlay, speed);
 }
 
 
@@ -29,12 +33,9 @@ function gamePlay() {
         score = 0
         direction = { x: 0, y: 0 }
         snake = [{ x: 8, y: 8 }];
-
-    }
-    if (isDead !== true) {
+    } else {
         scoreValue.textContent = score;
         gameEngine()
-        console.log('hey')
     }
 }
 
@@ -60,7 +61,7 @@ function isDead(snakeEl) {
         }
     }
     // If you bump into the wall
-    if (snakeEl[0].x > 18 || snakeEl[0].x <= 0 || snakeEl[0].y > 18 || snakeEl[0].y <= 0) {
+    if (snakeEl[0].x > width || snakeEl[0].x <= 0 || snakeEl[0].y > width || snakeEl[0].y <= 0) {
         return true;
     }
 
@@ -120,7 +121,6 @@ window.addEventListener('keydown', e => {
         case 'ArrowUp':
             if (inputDirection.y !== 0) break
             direction = { x: 0, y: -1 }
-            console.log("ArrowUp")
             break
         case 'ArrowDown':
             if (inputDirection.y !== 0) break
